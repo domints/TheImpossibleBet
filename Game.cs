@@ -5,16 +5,23 @@ namespace TheImpossibleBet
 {
     class Game
     {
-        private int[] boxes;
-        public Game(int boxesCount)
+        private List<int> boxes;
+        private int maxMoves;
+        public Game(int boxesCount, int? maxMoves = null)
         {
-            boxes = new int[boxesCount];
-            HashSet<int> leftNumbers = new HashSet<int>();
+            boxes = new List<int>();
             Random rand = new Random();
             for(int i = 0; i < boxesCount; i++)
             {
-                leftNumbers.Add(i);
+                boxes.Add(i);
             }
+
+            boxes.Shuffle();
+
+            this.maxMoves = maxMoves ?? boxesCount / 2;
         }
+
+        public List<int> Boxes => boxes;
+        public int MaxMoves => maxMoves;
     }
 }
